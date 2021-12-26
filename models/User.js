@@ -35,7 +35,8 @@ const userSchema = new mongoose.Schema({
         type:Number,
         default:300
 
-    }
+    },
+ 
 },{timestamps:true})
 
 const Users= mongoose.model("Users",userSchema)

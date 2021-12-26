@@ -49,8 +49,20 @@ const jobSchema= new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:"Users",
         required:true
-    }
+    },
+    location: {
+        type: {
+          type: String, // Don't do `{ location: { type: String } }`
+          enum: ['Point'] // 'location.type' must be 'Point'
+         
+        },
+        coordinates: {
+          type: [Number],
+        },
+      }
 },{timestamps:true})
+
+jobSchema.index({location: '2dsphere'});
 
 const Jobs=mongoose.model('Jobs',jobSchema)
 
