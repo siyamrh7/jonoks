@@ -33,4 +33,20 @@ const getUser=async(req,res)=>{
     const user=await Users.findById(req.id).populate("posts").populate("jobs")
     res.json({success:true,msg:user})
 }
-module.exports={registerCtrl,signinCtrl,getUser}
+
+
+const buyCoin=async(req,res)=>{
+    const user=await Users.findById(req.id)
+    const coin=parseInt(req.query.coins)
+    if(user){
+    await Users.findByIdAndUpdate(req.id,{
+       coins:user.coins+coin
+    })}
+    res.json({msg:"Coin added to your account",status:true})
+}
+
+
+
+
+
+module.exports={registerCtrl,signinCtrl,getUser,buyCoin}
