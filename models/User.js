@@ -36,6 +36,10 @@ const userSchema = new mongoose.Schema({
         default:300
 
     },
+    resetCode:{
+        type:Number,
+        
+    }
  
 },{timestamps:true})
 

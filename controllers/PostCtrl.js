@@ -36,11 +36,18 @@ const getSinglePost=async(req,res)=>{
 
 
 const getPost=async(req,res)=>{
-
-    const posts=await Posts.find({}).populate("user")
-    res.json({status:true,msg:posts})
-
+const {search}=req.query
+if(search !=="undefined"){
+    const posts=await Posts.find({ title: { $regex: search, $options: "i" } } ).populate("user").limit(20)
+    return res.json({status:true,msg:posts})
+}else {
+    const posts=await Posts.find({}).populate("user").limit(20)
+     res.json({status:true,msg:posts})
+}
+}
+const deletePost=async(req,res)=>{
+await Posts.findByIdAndDelete(req.params.id)
+res.json({msg:"Post Deleted Successfully"})
 }
 
-
-module.exports={createPost,getPost,getSinglePost}
+module.exports={createPost,getPost,getSinglePost,deletePost}

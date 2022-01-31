@@ -57,4 +57,11 @@ const ContactNow=async(req,res)=>{
 }
 res.json({status:false,msg:"Invalid creadentials"})
 }
-module.exports={createJob,getJob,getSingleJob,ContactNow}
+
+
+const deleteJob=async(req,res)=>{
+    await Jobs.findByIdAndDelete(req.params.id)
+    res.json({msg:"Post Deleted Successfully"})
+    }
+    
+module.exports={createJob,getJob,getSingleJob,ContactNow,deleteJob}
