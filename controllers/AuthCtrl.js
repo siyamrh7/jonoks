@@ -68,7 +68,10 @@ if(check){
 
 
 const transporter = nodemailer.createTransport ({
-    service: "outlook",
+    aliases: ["Outlook", "Outlook.com"],
+    domains: [ "outlook.com"],
+    host: "smtp-mail.outlook.com",
+    port: 587,
     auth: {
         user: process.env. AUTH_EMAIL,
         pass: process.env.AUTH_EMAIL_PASS
