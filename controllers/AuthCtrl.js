@@ -68,7 +68,7 @@ if(check){
 
 
 const transporter = nodemailer.createTransport ({
-    service: "gmail",
+    service: "outlook",
     auth: {
         user: process.env. AUTH_EMAIL,
         pass: process.env.AUTH_EMAIL_PASS
@@ -99,7 +99,6 @@ check.resetCode=code
         subject: "Jonoks password reset code",
         text: `Your code is ${code}`
     }
-
   const Res= await transporter.sendMail(mail0ptions)
     if(Res.accepted){
         await check.save()
